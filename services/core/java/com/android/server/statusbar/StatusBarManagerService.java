@@ -729,6 +729,17 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
                 mBar.startTracing();
                 mTracingEnabled = true;
             } catch (RemoteException ex) {}
+	    }
+	}
+    }
+
+    public void showInDisplayFingerprintView() {
+        if (mBar != null) {
+            try {
+                mBar.showInDisplayFingerprintView();
+            } catch (RemoteException ex) {
+                // do nothing
+            }
         }
     }
 
@@ -745,6 +756,17 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
     @Override
     public boolean isTracing() {
         return mTracingEnabled;
+    }
+
+    @Override
+    public void hideInDisplayFingerprintView() {
+        if (mBar != null) {
+            try {
+                mBar.hideInDisplayFingerprintView();
+            } catch (RemoteException ex) {
+                // do nothing
+            }
+        }
     }
 
     // TODO(b/117478341): make it aware of multi-display if needed.
