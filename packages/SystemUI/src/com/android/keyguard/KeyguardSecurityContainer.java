@@ -514,7 +514,8 @@ public class KeyguardSecurityContainer extends FrameLayout implements KeyguardSe
 
     @Override
     public WindowInsets onApplyWindowInsets(WindowInsets insets) {
-
+        int minBottomMargin = getResources().getDimensionPixelSize(
+                R.dimen.kg_security_container_min_bottom_margin);
         // Consume bottom insets because we're setting the padding locally (for IME and navbar.)
         int inset;
         if (sNewInsetsMode == NEW_INSETS_MODE_FULL) {
@@ -524,7 +525,7 @@ public class KeyguardSecurityContainer extends FrameLayout implements KeyguardSe
         } else {
             inset = insets.getSystemWindowInsetBottom();
         }
-        setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), inset);
+        setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), minBottomMargin > inset ? minBottomMargin : inset);
         return insets.inset(0, 0, 0, inset);
     }
 
